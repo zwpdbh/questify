@@ -1,8 +1,8 @@
 defmodule Questify.Embeddings do
   def embed(text, opts \\ []) when is_binary(text) do
-    embedding_url = Application.get_env(:questify, :openai)[:embedding_url]
-    embedding_model = Application.get_env(:questify, :openai)[:embedding_model]
-    openai_api_key = Application.get_env(:questify, :openai)[:openai_api_key]
+    embedding_url = Application.get_env(:questify, :doubao)[:embedding_url]
+    embedding_model = Application.get_env(:questify, :doubao)[:embedding_model]
+    api_key = Application.get_env(:questify, :doubao)[:api_key]
 
     response =
       HTTPoison.post(
@@ -13,7 +13,7 @@ defmodule Questify.Embeddings do
         }),
         [
           {"Content-Type", "application/json"},
-          {"Authorization", "Bearer #{openai_api_key}"}
+          {"Authorization", "Bearer #{api_key}"}
         ]
       )
 

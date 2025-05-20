@@ -1,5 +1,6 @@
 defmodule QuestifyWeb.ActionLive.Index do
-  alias Ecto.Repo
+  alias Questify.Repo
+
   use QuestifyWeb, :live_view
 
   alias Questify.Games

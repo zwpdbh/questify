@@ -20,21 +20,38 @@ if System.get_env("PHX_SERVER") do
   config :questify, QuestifyWeb.Endpoint, server: true
 end
 
-openai_api_key =
-  System.get_env("OPENAI_API_KEY") ||
+# openai_api_key =
+#   System.get_env("OPENAI_API_KEY") ||
+#     raise """
+#     environment variable OPENAI_API_KEY is missing
+#     """
+
+# config :questify, :openai,
+#   openai_api_key: openai_api_key,
+#   embedding_url: "https://api.openai.com/v1/embeddings",
+#   embedding_model: "text-embedding-ada-002",
+#   image_gen_url: "https://api.openai.com/v1/images/generations"
+
+doubao_api_key =
+  System.get_env("DOUBAO_API_KEY") ||
     raise """
-    environment variable OPENAI_API_KEY is missing
+    environment variable DOUBAO_API_KEY is missing
     """
 
-config :questify, :openai,
-  openai_api_key: openai_api_key,
-  embedding_url: "https://api.openai.com/v1/embeddings",
-  embedding_model: "text-embedding-ada-002",
-  image_gen_url: "https://api.openai.com/v1/images/generations"
+# Those value could be checked from: https://api.volcengine.com/api-explorer
+config :questify, :doubao,
+  api_key: doubao_api_key,
+  embedding_url: "https://ark.cn-beijing.volces.com/api/v3/embeddings",
+  embedding_model: "doubao-embedding-text-240515",
+  image_gen_url: "https://ark.cn-beijing.volces.com/api/v3/images/generations"
 
-config :instructor,
+# config :instructor, :openai,
+#   adapter: Instructor.Adapters.OpenAI,
+#   openai: [api_key: openai_api_key]
+
+config :instructor, :doubao,
   adapter: Instructor.Adapters.OpenAI,
-  openai: [api_key: openai_api_key]
+  openai: [api_key: doubao_api_key]
 
 if config_env() == :prod do
   database_url =
