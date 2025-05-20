@@ -75,7 +75,7 @@ Questify.Creator.chunk_file(punk_theme, "dev/books/triplanet.txt")
 Games.create_lore_action(hello_quest)
 Games.create_trailblaze_action(hello_quest)
 
-{:ok, hello_location_lobby} =
+{:ok, _hello_location_lobby} =
   Games.create_location(%{
     "name" => "Lobby",
     "description" => """
@@ -88,7 +88,7 @@ Games.create_trailblaze_action(hello_quest)
     "quest_id" => hello_quest.id
   })
 
-{:ok, hello_location_pool} =
+{:ok, _hello_location_pool} =
   Games.create_location(%{
     "name" => "Pool",
     "description" => """
@@ -99,7 +99,7 @@ Games.create_trailblaze_action(hello_quest)
     "quest_id" => hello_quest.id
   })
 
-{:ok, hello_location_basement} =
+{:ok, _hello_location_basement} =
   Games.create_location(%{
     "name" => "Basement",
     "description" => """
@@ -122,7 +122,7 @@ Games.create_trailblaze_action(hello_quest)
     "to_id" => hello_location_pool.id
   })
 
-{:ok, hello_action_2} =
+{:ok, _hello_action_2} =
   Games.create_action(%{
     "command" => "Investigate the room",
     "description" => """
@@ -144,7 +144,7 @@ Games.create_trailblaze_action(hello_quest)
     "to_id" => hello_location_basement.id
   })
 
-{:ok, punk_quest} =
+{:ok, _punk_quest} =
   Games.create_quest(%{
     "name" => "Cyberpunk Redemption",
     "slug" => "punk",
